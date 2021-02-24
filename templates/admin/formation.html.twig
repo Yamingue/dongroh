@@ -1,0 +1,57 @@
+{% extends "blank.admin.html.twig" %}
+{% block body %}
+<div class="grid-2">
+    <div class="card mb-2">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Date</th>
+                        <th>Poster</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for formation in formations %}
+                    <tr class="hoverable ">
+                        <td>{{ formation.titre }}</td>
+                        <td>{{ formation.beginAt | date("d/m/Y H:m:s") }}</td>
+                        <td><img class="mw192" src="{{ asset(formation.poster) }}" alt="{{ formation.titre }}" srcset="">
+                        </td>
+                        <td>
+                            <a href="{{ path('formation_delete',{'id':formation.id}) }}" class="btn btn-danger btn-circle"
+                                id="delete"><i class="fa fa-trash"></i></a>
+                            <a href="{{ path('admin_formation_view',{'id':formation.id}) }}" class="btn btn-primary btn-circle "><i
+                                    class="fa fa-eye"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation">
+                {{ knp_pagination_render(formations) }}
+            </div>
+        </div>
+    
+    </div>
+    <div class="card">
+        
+        <div class="card-body">
+            <h5 class="card-title">
+                Nouvelle formation
+            </h5>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <p>
+                <button class="btn btn-primary" type="submit" name="action">Enregistrer
+                    <i class="fa fa-paper-plane"></i>
+                </button>
+            </p>
+            {{ form_end(form) }}
+    
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

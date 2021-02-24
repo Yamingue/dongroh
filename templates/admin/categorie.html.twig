@@ -1,0 +1,54 @@
+{% extends "blank.admin.html.twig" %}
+{% block body %}
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Titre</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for cat in categories %}
+            <tr class="hoverable ">
+                <td>{{ cat.nom }}</td>
+                <td>
+                    <a href="{{ path('categorie_delete',{'id':cat.id}) }}" class="btn-floating red" id="delete"><i
+                            class="fa fa-trash"></i></a>
+                    <a href="{{ path('categorie_edite',{'id':cat.id}) }}" class="btn-floating "><i
+                            class="fa fa-pen"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="navigation">
+    {{ knp_pagination_render(categories) }}
+</div>
+<div class="card">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Nouvelle categorie</h6>
+      <p class="card-text">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit" href="#" class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-paper-plane"></i>
+                </span>
+                <span class="text">Enregistrer</span>
+            </button>
+        </p>
+        {{ form_end(form) }}
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

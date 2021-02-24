@@ -1,0 +1,29 @@
+
+  {% for video in videos %}
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <a href="#"><img class="card-img-top" src="{{ asset(video.poster) }}" alt="{{ video.titre }}"></a>
+      <div class="card-body">
+        <h4 class="card-title">
+          <a href="{{ path('video_view',{id:video.id}) }}">{{ video.titre }}</a>
+        </h4>
+        <h5>{{ video.prix |number_format(0,'.',' ') }} FCFA</h5>
+        <p class="card-text">
+          {% if video.description |length >70 %}
+          {{ video.description |slice(0, 70)}} ...
+          {% else %}
+          {{ video.description}}
+          {% endif %}
+          
+        </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">
+          {% for n in range(1, 5, 1) %}
+			{% if n <= 3 %} &#9733; {% else %} &#9734; {% endif %} {% endfor %} </span>
+        </small>
+      </div>
+    </div>
+  </div>
+      
+  {% endfor %}

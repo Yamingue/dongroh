@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+<div class="card mb-2 mt-2">
+    <div class="card-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos porro, consequuntur mollitia eligendi ducimus
+        accusamus, veniam, consequatur inventore facere repellat soluta beatae quo tempore harum reiciendis aliquam
+        incidunt nulla nostrum. Sed dolorem, doloribus quod saepe explicabo perferendis ad! Facere eaque ipsum vel
+        nulla, dolorem facilis maxime quisquam temporibus consectetur consequuntur. Suscipit accusamus facere labore
+        sint nobis vel recusandae atque vitae quidem eum, illum ea maiores quas velit ipsum, eligendi accusantium
+        voluptas deserunt veniam. Aliquid nulla sequi repudiandae temporibus consequatur aut culpa, vel nihil molestiae
+        harum, qui dicta animi possimus optio quidem id in eaque maxime iusto illo? Nesciunt dolorum eos illum veritatis
+        vero molestiae natus tenetur accusantium possimus, maiores illo quo repellendus facilis accusamus architecto
+        molestias repellat? Corrupti vel fugiat ad non quam dolorem saepe incidunt accusamus dicta quae suscipit alias
+        odit deleniti, debitis optio autem? Voluptatem perspiciatis vitae sint officiis doloribus. Voluptate repellendus
+        ratione voluptatibus neque cumque! Ad, illo.
+    </div>
+</div>
+<div class="card">
+    <div class="card-header center">
+        Nos services
+    </div>
+    <div class="card-body">
+        <div class="row center">
+            {# card pour le service de marketing #}
+            <div class="col-sm-6 service col-md-4 col-lg-3 mb-2">
+                <!-- Card -->
+                <div class="card testimonial-card">
+
+                    <!-- Background color -->
+                    <div class="card-up aqua-gradient"></div>
+
+                    <!-- Avatar -->
+                    <div class="avatar mx-auto  light-blue-text">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="card-body">
+                        <!-- Name -->
+                        <h4 class="card-title">Market</h4>
+                        <hr>
+                        <!-- Quotation -->
+                        <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Eos,
+                            adipisci
+                        </p>
+                        <a href="#" type="button" class="btn btn-light-blue btn-md">Acceder</a>
+                    </div>
+
+                </div>
+                <!-- Card -->
+            </div>
+            {# card pour le service de Formation #}
+            <div class="col-sm-6 service col-md-4 col-lg-3 mb-2">
+                <!-- Card -->
+                <div class="card testimonial-card">
+
+                    <!-- Background color -->
+                    <div class="card-up aqua-gradient"></div>
+
+                    <!-- Avatar -->
+                    <div class="avatar mx-auto  light-blue-text">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="card-body">
+                        <!-- Name -->
+                        <h4 class="card-title">Formations</h4>
+                        <hr>
+                        <!-- Quotation -->
+                        <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Eos,
+                            adipisci
+                        </p>
+                        <a href="#" class="btn btn-light-blue btn-md">Acceder</a>
+                    </div>
+
+                </div>
+                <!-- Card -->
+            </div>
+            {# card pour les services #}
+            <div class="col-sm-6 service col-md-4 col-lg-3 mb-2">
+                <!-- Card -->
+                <div class="card testimonial-card">
+
+                    <!-- Background color -->
+                    <div class="card-up aqua-gradient"></div>
+
+                    <!-- Avatar -->
+                    <div class="avatar mx-auto  light-blue-text">
+                        <i class="fas fa-tools"></i>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="card-body">
+                        <!-- Name -->
+                        <h4 class="card-title">Service</h4>
+                        <hr>
+                        <!-- Quotation -->
+                        <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Eos,
+                            adipisci
+                        </p>
+                        <a href="{{ path('service') }}" class="btn btn-light-blue btn-md">Acceder</a>
+                    </div>
+                    
+
+                </div>
+                <!-- Card -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-2">
+    <div class="card-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic soluta ut, suscipit temporibus quis tempora. Excepturi quas odit consequuntur quisquam aspernatur sequi vitae non. Eveniet sunt ducimus pariatur nulla fuga.
+    </div>
+</div>
+{% endblock %}

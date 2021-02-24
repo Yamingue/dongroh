@@ -1,0 +1,39 @@
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h5>Ajouter Article</h5>
+        <p>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn waves-effect waves-light orange" type="submit" name="action" style="margin-top: 10px;">Submit
+                <i class="material-icons right">save</i>
+            </button>
+            {{ form_end(form) }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-floating btn red circle modal-close">
+            <i class="material-icons right">close</i>
+        </a>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <h5>Ajouter Une categorie</h5>
+        <p>
+            {{ form_start(catform) }}
+            {{ form_widget(catform) }}
+            <button class="btn waves-effect waves-light orange" type="submit" name="action" style="margin-top: 10px;">Submit
+                <i class="material-icons right">save</i>
+            </button>
+            {{ form_end(catform) }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-floating btn red circle modal-close">
+            <i class="material-icons right">close</i>
+        </a>
+    </div>
+</div>

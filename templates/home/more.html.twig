@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+{% block title %}
+{{ article.titre }}
+{% endblock %}
+{% block body %}
+<div class="card mt-4">
+	<img class="card-img-top img-fluid" src="{{ asset(article.photo) }}" alt='{{ article.titre }}'>
+	<div class="card-body">
+		<h3 class="card-title">{{article.titre}}</h3>
+		<h4>{{article.prix |number_format(0,'.',' ')}}<sup>FCFA</sup> </h4>
+		<p class="card-text">{{ article.description }}</p>
+
+		<span class="text-warning">
+			{% for n in range(1, 5, 1) %}
+			{% if n <= article.note %} &#9733; {% else %} &#9734; {% endif %} {% endfor %} </span>
+				{{ article.note|number_format(1,'.','') }} étoiles
+	</div>
+</div>
+<!-- /.card -->
+
+<div class="card card-outline-secondary my-4">
+	<div class="card-header">
+		Commentaire sur le produit
+	</div>
+	<div class="card-body">
+		{% for note in article.notes %}
+		<p>{{ note.commentaire }}</p>
+		<span class="text-warning">
+			{% for n in range(1, 5, 1) %}
+			{% if n <= note.note %} &#9733; {% else %} &#9734; {% endif %} {% endfor %} </span>
+				<small class="text-muted">{% if note.auteur %}
+					Poster par {{ note.auteur.username }}
+					{% else %}
+					Auteur Anonyme
+					{% endif %}</small>
+				<hr>
+				{% endfor %}
+
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				<button class="btn btn-success">Commenter</button>
+				{{ form_end(form) }}
+	</div>
+</div>
+<!-- /.card -->
+{% endblock %}

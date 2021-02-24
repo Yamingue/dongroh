@@ -1,0 +1,15 @@
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">
+          Dongroh
+        </h1>
+        <div class="list-group">
+          {% for c in categories %}
+            
+          <a href="{{ path('home_cat',{id:c.id}) }}" class="list-group-item ">{{ c.nom }}</a>
+          {% endfor %}
+        </div>
+
+      </div>
+<!-- /.col-lg-3 -->

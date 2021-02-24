@@ -1,0 +1,60 @@
+.logo{
+    width: 30px;
+    height: 30px;
+}
+.mw192 {
+    max-width: 100px;
+}
+.grid-2{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 10px;
+}
+.mw420{
+    max-width: 100%;
+}
+.grid-footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.card .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100px;
+    margin-top: -50px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    border: solid 5px #0288d1 ;
+}
+.card .avatar i {
+    font-size: 60px;
+}
+
+.card-up{
+    width: 100%;
+    height: 100px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btn-floating{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.active{
+    border-bottom: solid #E67A45 3px;
+}
+.nav-link:hover {
+    background-color: black;
+    color: red;
+    transition: ease;
+    transition-delay: 2s;
+}

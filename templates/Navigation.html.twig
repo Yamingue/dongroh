@@ -1,0 +1,48 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="{{ asset('android-chrome-192x192.png')}}" class='rounded-circle img-profile logo' alt="" srcset="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="{{ path('index') }}">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.get('_route') in ['home','home_cat','more'] %}active{% endif %}"
+            href="{{ path('home') }}">Market</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.get('_route') in ['formation','formation_view'] %}active{% endif %}"
+            href="{{ path('formation') }}">Formation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.get('_route') in ['video','video_view'] %}active{% endif %}"
+            href="{{ path('video') }}">Video</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.get('_route') in ['service'] %}active{% endif %}"
+            href="{{ path('service') }}">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.get('_route') in ['contact'] %}active{% endif %}"
+            href="{{ path('contact') }}">Contact</a>
+        </li>
+        <li class="nav-item">
+          {% if app.user %}
+          <a class="nav-link" href="{{ path('app_logout') }}">{% trans %}déconnexion{% endtrans %}</a>
+          {% else %}
+          <a class="nav-link" href="{{ path('app_login') }}">{% trans %}Connexion{% endtrans %}</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

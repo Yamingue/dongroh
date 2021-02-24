@@ -1,0 +1,30 @@
+.arc-16 {
+    border-radius: 16px;
+}
+.arc-5 {
+    border-radius: 5px;
+}
+.mw192{
+    max-width: 180px;
+}
+.mw150{
+    max-width: 150px;
+}
+.mw200{
+    max-width: 200px;
+}
+.mw300{
+    max-width: 300px;
+}
+.mw320{
+    max-width: 320px;
+}
+.mw350{
+    max-width: 350px;
+}
+.mw420{
+    max-width: 420px;
+}
+.mw500{
+    max-width: 500px;
+}

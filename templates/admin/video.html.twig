@@ -1,0 +1,66 @@
+{% extends "blank.admin.html.twig" %}
+{% block body %}
+<div class="grid-2">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Poster</th>
+                        <th>Prix</th>
+                        <th>Detaille</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>            
+                <tbody>
+                    {% for video in videos %}
+                    <tr>
+                        <td>{{ video.titre }}</td>
+                        <td>
+                            {% if '.mp4' in video.poster  %}
+                            <video class="mw192" src="{{ asset(video.poster) }}" controls></video>
+                            {% else %}
+                            <img class="mw192" src="{{ asset(video.poster) }}" alt="{{ video.titre }}" srcset="">
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ video.prix | number_format(0,'.',' ')}} <b>FCFA</b>
+                        </td>
+                        <td>
+                            {% if video.description |length < 100 %}
+                                {{ video.description}}
+                            {% else %}
+                                {{video.description |slice(0, 100)}} ...
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('delete_video_formation',{'id':video.id}) }}" class="btn btn-danger btn-circle" id="delete"><i class="fa fa-trash"></i></a>
+                          {#  <a href="{{ path('admin_video_view',{'id':video.id}) }}" class="btn-floating "><i class="material-icons">remove_red_eye</i></a>
+                        #}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation">
+                {{ knp_pagination_render(videos) }}
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <p>
+                <button class="btn waves-effect waves-light orange darken-3 arc-1" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </p>
+            {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

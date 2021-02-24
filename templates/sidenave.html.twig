@@ -1,0 +1,39 @@
+<nav>
+    <div class="nav-wrapper blue darken-3">
+
+        <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="{{ path('home') }}"><i class="material-icons">shopping_basket</i></a></li>
+            <li><a href="{{ path('formation') }}"><i class="material-icons">chrome_reader_mode</i></a></li>
+            <li><a href="{{ path('video') }}"><i class="material-icons">ondemand_video</i></a></li>
+            <li><a href="{{ path('notification') }}"><i class="material-icons">notifications</i></a></li>
+            <li>
+                <a  href="#!"><i class="material-icons">more_vert</i></a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+<ul id="slide-out" class="sidenav">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="{{ asset('img/b.jpeg') }}">
+            </div>
+            <a href="#user"><img class="circle" src="{{ asset('img/logo.jpg') }}"></a>
+            <a href="#name"><span class="white-text name">John Doe</span></a>
+            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div>
+    </li>
+    <li><a href="{{ path('home') }}"><i class="material-icons">shopping_basket</i>Market</a></li>
+    <li><a href="{{ path('formation') }}"><i class="material-icons">chrome_reader_mode</i>Formations</a></li>
+    <li><a href="{{ path('notification') }}"><i class="material-icons">notifications</i> Notifications <span class="new badge red" data-badge-caption="">{{ notif }}</span></a></li>
+    <li><a href="{{ path('video') }}"><i class="material-icons">ondemand_video</i>Formations Video</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+</ul>

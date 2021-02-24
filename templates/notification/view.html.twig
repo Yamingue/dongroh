@@ -1,0 +1,9 @@
+{% extends "base.admin.html.twig" %}
+{% block body %}
+    {{ dump() }}
+    <div class="card">
+        <div class="card-content">
+            {{ notification.message | raw }}
+        </div>
+    </div>
+{% endblock  %}

@@ -1,0 +1,70 @@
+{% extends "blank.admin.html.twig" %}
+
+{% block body %}
+<div class="card mb-1">
+    <div class="card-body">
+        <div class="card-title">
+            <i class="fa fa-photo-video"></i>
+            Apercu
+        </div>
+        <div class="card-text">
+            <p>
+                {% set media = formation.media %}
+                {% if media.type == 'video' %}
+                <video controls class="img-fluid" src="{{ asset(media.path) }}"></video>
+                {% else %}
+                <img src="{{ asset(media.path) }}" alt=" {{ formation.titre }}" class="img-fluid" alt="{{ formation.titre }}">
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <i class="fa fa-poll-h"></i>
+            Description
+        </div>
+        <div class="card-text">
+            <p>{{ formation.description }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <a href="{{ path('admin_formation_extract',{'id':formation.id}) }}" class="btn btn-primary mt-1 mb-1">Extraire la
+        liste des
+        participants</a>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <h4> Paticipants total : <span class="badge badge-primary">{{formation.inscriptions | length}}</span></h4>
+        </div>
+        <div class="card-text">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom complet</th>
+                        <th>email</th>
+                        <th>Whatshap</th>
+                        <th>Telephone</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for p in formation.inscriptions %}
+                    <tr>
+                        <td>{{p.nom}}</td>
+                        <td>{{p.email}}</td>
+                        <td>{{p.whatsapp}}</td>
+                        <td>{{ p.tel }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

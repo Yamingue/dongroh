@@ -1,0 +1,16 @@
+{% extends 'blank.admin.html.twig' %}
+
+{% block title %}Hello BanierAdminController!{% endblock %}
+
+{% block body %}
+
+ {{ form_start(form)}}
+ {{ form_widget(form)}}
+ <button type="submit" class="btn btn-primary btn-icon-split">
+    <span class="icon text-white-50">
+        <i class="fas fa-flag"></i>
+    </span>
+    <span class="text">Ajouter</span>
+</button>
+ {{ form_end(form)}}
+{% endblock %}

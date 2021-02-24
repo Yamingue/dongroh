@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}dongroh Market
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+
+  {% include "sidebar.html.twig" %}
+  <div class="col-lg-9">
+    {% include "caroussel.html.twig" %}
+    <div class="row">
+      {% include "home/listing.html.twig" %}
+      </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,6 @@
+<div class="collection">
+    <a href="{{ path('admin') }}" class="collection-item {% if app.request.attributes.get('_route') == 'admin' %}orange active darken-2{% endif %}">Articles </a>
+    <a href="{{ path('admin_formation') }}" class="collection-item {% if app.request.attributes.get('_route') == 'admin_formation' %}orange active darken-2{% endif %}">Formations</a>
+    <a href="{{ path('categorie') }}" class="collection-item {% if app.request.attributes.get('_route') == 'categorie' %}orange active darken-2{% endif %}">Categorie</a>
+    <a href="{{ path('video_formation') }}" class="collection-item {% if app.request.attributes.get('_route') == 'video_formation' %}orange active darken-2{% endif %}">Videos</a>
+  </div>
