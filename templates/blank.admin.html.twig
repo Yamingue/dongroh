@@ -12,7 +12,7 @@
     <title>SB Admin 2 - Blank</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('font/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -87,39 +87,13 @@
                         <h6 class="collapse-header">Utilitaires:</h6>
                         <a class="collapse-item" href="{{ path('categorie') }}">Categories</a>
                         <a class="collapse-item" href="{{ path('banier_admin') }}">banier</a>
+                        <a class="collapse-item" href="{{ path('admin_service') }}">Service</a>
                     </div>
                 </div>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item active" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -269,21 +243,23 @@
                                     Vos Messages
                                 </h6>
                                 {% for message in messages %}
-                                <a class="dropdown-item d-flex align-items-center" href="{{ path('admin_contact_view',{id:message.id}) }}">
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="{{ path('admin_contact_view',{id:message.id}) }}">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
                                         <div class="text-truncate">
-                                           {{ message.sujet}}
+                                            {{ message.sujet}}
                                         </div>
                                         <div class="small text-gray-500">{{ message.email }}</div>
                                     </div>
                                 </a>
                                 {% endfor %}
-                                <a class="dropdown-item text-center small text-gray-500" href="{{ path('admin_contact') }}">{% trans %}Lire plus de messages{% endtrans %}</a>
+                                <a class="dropdown-item text-center small text-gray-500"
+                                    href="{{ path('admin_contact') }}">{% trans %}Lire plus de messages{% endtrans
+                                    %}</a>
                             </div>
                         </li>
 
@@ -294,8 +270,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset('android-chrome-192x192.png')}}">
+                                <img class="img-profile rounded-circle" src="{{asset('android-chrome-192x192.png')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -328,7 +303,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     {% block body %}
-                        
+
                     {% endblock %}
                 </div>
                 <!-- /.container-fluid -->
@@ -377,16 +352,20 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>
     <script src="{{ asset('js/select.min.js') }}"></script>
+    {% block js %}
+        
+    {% endblock  %}
 </body>
 
 </html>
