@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{app.request.locale}}">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{% block title %}{% endblock %}</title>
+
+  <link rel="stylesheet" href="{{ asset('font/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/main.css') }} ">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ asset('css/shop-homepage.css') }}" rel="stylesheet">
+
+</head>
+
+<body>
+  {% include "Navigation.html.twig" %}
+  <!-- Page Content -->
+  <div class="container">
+    {% block body %}{% endblock %}
+
+  </div>
+  <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  {% include "footer.html.twig" %}
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ asset('js/jquery.min.js') }}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript"></script>
+
+</body>
+
+</html>
