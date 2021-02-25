@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -51,6 +53,16 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity=Panier::class, cascade={"persist", "remove"})
      */
     private $panier;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="make_by")
+     */
+    private $commandes;
+
+    public function __construct()
+    {
+        $this->is_confirme = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -141,6 +153,36 @@ class User implements UserInterface
     public function setPanier(?Panier $panier): self
     {
         $this->panier = $panier;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->is_confirme->contains($commande)) {
+            $this->is_confirme[] = $commande;
+            $commande->setMakeBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->is_confirme->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getMakeBy() === $this) {
+                $commande->setMakeBy(null);
+            }
+        }
 
         return $this;
     }
