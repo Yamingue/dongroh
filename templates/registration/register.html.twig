@@ -3,19 +3,19 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="card" style="padding: 15px; margin-top: 40px">
-        <div class="center"> 
-            <div class="material-icons" style="font-size: 5em; margin-top: -50px">account_circle</div>
-        </div>
+<div class="container mt-2">
+    <div class="row center">
+        <div class="col-sm-8">
+            <div class="jumbotron">
+                {{ form_start(registrationForm) }}
+                {{ form_widget(registrationForm) }}
 
-        {{ form_start(registrationForm) }}
-        {{ form_widget(registrationForm) }}
-
-        <button type="submit" class="btn">Register</button>
-        {{ form_end(registrationForm) }}
-        <div class="center"> 
-            <a class="btn orange" href="{{ path('app_login') }}">Connexion</a>
+                <button type="submit" class="btn btn-sm rounded primary-color-dark text-white">Register</button>
+                {{ form_end(registrationForm) }}
+                <div class="center">
+                   Déjà un compte ? <a href="{{ path('app_login') }}">Connexion</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

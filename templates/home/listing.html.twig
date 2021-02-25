@@ -22,6 +22,9 @@
           {% for n in range(1, 5, 1) %}
 			{% if n <= article.note %} &#9733; {% else %} &#9734; {% endif %} {% endfor %} </span>
         </small>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url( path('more',{id:article.id}) ) }}" target="_blank">
+          Share on Facebook
+        </a>
       </div>
     </div>
   </div>
