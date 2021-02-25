@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\NoteArticle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,14 +15,16 @@ class NoteArticleType extends AbstractType
     {
         $builder
             ->add('note',RangeType::class,[
-                'label'=> 'Noter sur 5 le produit',
+                'label'=> 'Noter sur 5 le produit :',
                 'attr'=>[
                     'min'=>0,
                     'max'=>5,
                     'value'=>2,
                 ]
             ])
-            ->add('commentaire')
+            ->add('commentaire',TextareaType::class,[
+                'label'=>'Votre avis :'
+            ])
         ;
     }
 
