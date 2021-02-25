@@ -3,18 +3,33 @@
 {{ article.titre }}
 {% endblock %}
 {% block body %}
-<div class="card mt-4">
-	<img class="card-img-top img-fluid" src="{{ asset(article.photo) }}" alt='{{ article.titre }}'>
-	<div class="card-body">
-		<h3 class="card-title">{{article.titre}}</h3>
-		<h4>{{article.prix |number_format(0,'.',' ')}}<sup>FCFA</sup> </h4>
-		<p class="card-text">{{ article.description }}</p>
-
-		<span class="text-warning">
-			{% for n in range(1, 5, 1) %}
-			{% if n <= article.note %} &#9733; {% else %} &#9734; {% endif %} {% endfor %} </span>
-				{{ article.note|number_format(1,'.','') }} étoiles
+<div class="row mt-2">
+	<div class="col-md-6">
+		<div class="card">
+			<img class="card-img-top img-fluid" src="{{ asset(article.photo) }}" alt='{{ article.titre }}'>
+			<div class="card-body">
+				<span class="text-warning">
+					{% for n in range(1, 5, 1) %}
+					{% if n <= article.note %} &#9733; {% else %} &#9734; {% endif %} {% endfor %} </span>
+						{{ article.note|number_format(1,'.','') }} étoiles
+			</div>
+		</div>
 	</div>
+	<div class="col-md-6">
+		<h5>{{article.titre}}</h5>
+		<div class="rating">
+			<span class="text-warning">
+				{% for n in range(1, 5, 1) %}
+				{% if n <= article.note %} &#9733; {% else %} &#9734; {% endif %} {% endfor %} </span>
+		</div>
+		<h4>{{article.prix |number_format(0,'.',' ')}}FCFA </h4>
+		<p>{{ article.description }}</p>
+		<p><button type="button" class="btn btn-primary btn-md mr-1 mb-2 waves-effect waves-light">Acheter</button>
+			<button type="button" class="btn btn-light btn-md mr-1 mb-2 waves-effect waves-light"><i
+					class="fas fa-shopping-cart pr-2"></i>Ajouter au panier</button>
+		</p>
+	</div>
+
 </div>
 <!-- /.card -->
 
@@ -38,9 +53,11 @@
 
 				{{ form_start(form) }}
 				{{ form_widget(form) }}
-				<button class="btn btn-success">Commenter</button>
+				<button class="btn primary-color-dark btn-sm rounded text-white">Commenter</button>
 				{{ form_end(form) }}
 	</div>
 </div>
 <!-- /.card -->
+
+
 {% endblock %}

@@ -49,12 +49,3 @@
     width: 30px;
     border-radius: 50%;
 }
-.active{
-    border-bottom: solid #E67A45 3px;
-}
-.nav-link:hover {
-    background-color: black;
-    color: red;
-    transition: ease;
-    transition-delay: 2s;
-}
