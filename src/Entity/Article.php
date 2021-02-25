@@ -49,6 +49,7 @@ class Article
      */
     private $notes;
 
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -176,4 +177,6 @@ class Article
        
        return $n/count($this->getNotes());
     }
+
+   
 }

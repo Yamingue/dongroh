@@ -24,10 +24,21 @@ class Panier
      */
     private $Commandes;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="panier")
+     */
+    private $produit;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
         $this->Commandes = new ArrayCollection();
+        $this->produit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,6 +74,44 @@ class Panier
             if ($commande->getPanier() === $this) {
                 $commande->setPanier(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getProduit(): Collection
+    {
+        return $this->produit;
+    }
+
+    public function addProduit(Article $produit): self
+    {
+        if (!$this->produit->contains($produit)) {
+            $this->produit[] = $produit;
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Article $produit): self
+    {
+        if ($this->produit->removeElement($produit)) {
+            
         }
 
         return $this;

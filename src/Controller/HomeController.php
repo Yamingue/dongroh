@@ -25,6 +25,7 @@ class HomeController extends AbstractController
      */
     public function index(ArticleRepository $arRepo, BanierImageRepository $bR, CategorieRepository $cr): Response
     {
+        //
         // $om = $this->getDoctrine()->getManager();
         // for ($i=0; $i <10 ; $i++) { 
         //     # code...
