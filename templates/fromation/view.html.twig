@@ -4,11 +4,11 @@
 {% endblock %}
 {% block body %}
 <div class="card">
-    <div class="card-img-top">
+    <div class="card-img-top center">
         {% if formation.media.type == "video" %}
-        <video controls src="{{ asset(formation.media.path) }}" class="mw420"></video>   
+        <video controls src="{{ asset(formation.media.path) }}" class="img-fluid"></video>   
     {% else %}
-        <img class="mw420" src="{{ asset(formation.media.path) }}" alt="{{ formation.titre }}" srcset="">
+        <img class="img-fluid" src="{{ asset(formation.media.path) }}" alt="{{ formation.titre }}" srcset="">
     {% endif %}
     </div>
     <div class="card-body">

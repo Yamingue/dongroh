@@ -37,19 +37,20 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
                     <a class="dropdown-item" href="{{ path('profile') }}">
-                        
-                  <span class="badge danger-color">4</span>
-  
-                  <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-  
-                  <span class="clearfix d-none d-sm-inline-block">Cart</span>
+
+                        <span class="badge danger-color">4</span>
+
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+
+                        <span class="clearfix d-none d-sm-inline-block">Panier</span>
                     </a>
+                    <hr class="dropdown-divider">
                     {% if app.user %}
                     <a class="dropdown-item" href="{{ path('app_logout') }}">{% trans %}déconnexion{% endtrans %}</a>
                     {% else %}
                     <a class="dropdown-item" href="{{ path('app_login') }}">{% trans %}Connexion{% endtrans %}</a>
                     {% endif %}
-                    
+
                 </div>
             </li>
         </ul>

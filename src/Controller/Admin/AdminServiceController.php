@@ -27,7 +27,7 @@ class AdminServiceController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($service);
             $em->flush();
-            $this->addFlash('sucess', $service->getTitle() . ' Est bien Ajouter');
+            $this->addFlash('success', $service->getTitle() . ' Est bien Ajouter');
             return $this->redirectToRoute('admin_service');
         }
         return $this->render('admin_service/index.html.twig', [
@@ -45,7 +45,7 @@ class AdminServiceController extends AbstractController
            $em = $this->getDoctrine()->getManager();
            $em->remove($s);
            $em->flush();
-           $this->addFlash('sucess','Suprimer !!!');
+           $this->addFlash('success','Suprimer !!!');
         }
         return $this->redirectToRoute('admin_service');
     }

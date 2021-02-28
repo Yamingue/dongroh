@@ -59,7 +59,7 @@ class ProfileController extends AbstractController
             $em->persist($cmdArt);
             $em->persist($commande);
             $em->flush();
-            $this->addFlash('sucess','bien ajouter');
+            $this->addFlash('success','bien ajouter');
             return $this->redirectToRoute('profile');
         }
         return $this->render('profile/add.html.twig', [

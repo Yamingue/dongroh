@@ -7,21 +7,35 @@ use App\Entity\Inscription;
 use App\Entity\Notification;
 use App\Form\InscriptionType;
 use App\Repository\FormationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FromationController extends AbstractController
 {
+    private $paginator;
+
+    public function __construct( PaginatorInterface $paginator )
+    {
+        $this->paginator = $paginator;
+        
+    }
     /**
      * @Route("/formation", name="formation")
      */
-    public function index(FormationRepository $fRepo): Response
+    public function index(FormationRepository $fRepo,Request $req): Response
     {
 
+        $pagination = $this->paginator->paginate(
+            $fRepo->findAllPaginate(), /* query NOT result */
+            $req->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
         return $this->render('fromation/index.html.twig', [
-            'formations' => $fRepo->findAll(),
+            'formations' => $pagination,
             'notif'=>0,
         ]);
     }
@@ -54,7 +68,7 @@ class FromationController extends AbstractController
             $em->persist($n);
             $em->flush();
             #faire une notification visuel a l'utilisateur de l'inscription
-            $this->addFlash('succes',"Inscription réussit. Merci");
+            $this->addFlash('success',"Inscription réussit. Merci");
 
             return $this->redirectToRoute('formation');
         }

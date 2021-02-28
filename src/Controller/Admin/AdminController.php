@@ -59,7 +59,7 @@ class AdminController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($ar);
             $em->flush();
-            $this->addFlash("succes", $ar->getTitre() . " Ajouter avec success");
+            $this->addFlash("success", $ar->getTitre() . " Ajouter avec success");
             return $this->redirectToRoute('admin');
         }
 
@@ -86,7 +86,7 @@ class AdminController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($ar);
             $em->flush();
-            $this->addFlash('suces',"Supprimer !!!");
+            $this->addFlash('success',"Supprimer !!!");
         }
        return $this->redirectToRoute("admin");
         //dd($ar);
@@ -125,7 +125,7 @@ class AdminController extends AbstractController
             $em->persist($media);
             $em->persist($formation);
             $em->flush();
-            $this->addFlash('succes','Ajouter avec succes');
+            $this->addFlash('success','Ajouter avec succes');
             return $this->redirectToRoute('admin_formation');
         }
         $pagination = $this->paginator->paginate(
@@ -192,7 +192,7 @@ class AdminController extends AbstractController
         $em->remove($formation);
 
         $em->flush();
-        $this->addFlash('succes','Suprimer');
+        $this->addFlash('success','Suprimer');
         return $this->redirectToRoute('admin_formation');
         
     }
@@ -230,7 +230,7 @@ class AdminController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($cat);
         $em->flush();
-        $this->addFlash('succes','Suprimer');
+        $this->addFlash('success','Suprimer');
         return $this->redirectToRoute('categorie');
         dd($cat);
     }
@@ -246,7 +246,7 @@ class AdminController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($cat);
             $em->flush();
-            $this->addFlash('succes','Suprimer');
+            $this->addFlash('success','Suprimer');
         return $this->redirectToRoute("categorie");
         }
         

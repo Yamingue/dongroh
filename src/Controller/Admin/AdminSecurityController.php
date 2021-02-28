@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -35,6 +37,22 @@ class AdminSecurityController extends AbstractController
     public function logout()
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    /**
+     * @Route("/register", name="admin_register")
+     */
+    public function register(UserPasswordEncoderInterface $encoder)
+    {
+    //     $admin = new Admin();
+    //     $admin->setRoles(['ROLE_ADMIN']);
+    //     $admin->setEmail('yamking01@gmail.com');
+    //     $admin->setPassword($encoder->encodePassword($admin,"12345678"));
+    //     $em = $this->getDoctrine()->getManager();
+    //     $em->persist($admin);
+    //     $em->flush();
+        dd('collo');
+        # code...
     }
 
 }
