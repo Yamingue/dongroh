@@ -26,6 +26,13 @@ security:
             pattern: ^/admin
             provider: app_admin_provider
             anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\AdminAuthenticator
+            logout:
+                path: admin_app_logout
+                # where to redirect after logout
+                target: index
         main:
             anonymous: lazy
             provider: app_user_provider
