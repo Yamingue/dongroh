@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Commande;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Commande|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,17 @@ class CommandeRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findNotOut(User $u):Commande
+    {
+        return $this->createQueryBuilder('c')
+            //->innerJoin('c.make_by','u')
+            ->join('c.make_by','u')
+            ->where('c.is_out = false')
+            ->andWhere('u.id = :val')
+            //->andWhere('c.make_by = u and u.id= :val ')
+            ->setParameter('val', $u->getId())
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

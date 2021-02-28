@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="row center mt-5 mb-5">
+    <div class="col-sm-6 mb-5">
+        <!-- Material form login -->
+        <div class="card">
+
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Définir La quantité</strong>
+            </h5>
+
+            <!--Card content-->
+            <div class="card-body px-lg-5 pt-0">
+                {{ form_start(form)}}
+                {{ form_widget(form)}}
+                <!-- Sign in button -->
+                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+                    type="submit">Ajouter</button>
+
+                {{ form_end(form)}}
+            </div>
+
+        </div>
+        <!-- Material form login -->
+    </div>
+</div>
+{% endblock %}

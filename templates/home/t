@@ -23,8 +23,8 @@
       <div class="card-body">
 
         <!-- Category & Title -->
-        <h5 class="card-title mb-1"><strong><a href="{{ path('more',{id:article.id}) }}" class="dark-grey-text">{{ article.titre }} </a></strong></h5>
-        <span class="badge badge-light mb-2">{{ article.prix }} FCFA</span>
+        <h5 class="card-title mb-1"><strong><a href="" class="dark-grey-text">{{ article.titre }} </a></strong></h5>
+        <span class="badge badge-danger mb-2">bestseller</span>
 
         <!-- Rating -->
         <ul class="rating">
@@ -38,7 +38,7 @@
 
           <div class="row mb-0">
             <span class="float-right">
-              <a href="{{ path('profile_add_to_panier',{id:article.id}) }}" class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><i class="fas fa-shopping-cart ml-3"></i></a>
+              <a class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><i class="fas fa-shopping-cart ml-3"></i></a>
               <a href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url( path('more',{id:article.id}) ) }}" target="_blank" class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><i class="fab fa-facebook"></i></a>
             </span>
 

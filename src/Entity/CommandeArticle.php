@@ -30,10 +30,9 @@ class CommandeArticle
     private $qte;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="articles")
+     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="articles")
      */
-    private $commandes;
-
+    private $commande;
 
     public function __construct()
     {
@@ -69,35 +68,19 @@ class CommandeArticle
         return $this;
     }
 
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
+    public function getCommande(): ?Commande
     {
-        return $this->commandes;
+        return $this->commande;
     }
 
-    public function addCommande(Commande $commande): self
+    public function setCommande(?Commande $commande): self
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setArticles($this);
-        }
+        $this->commande = $commande;
 
         return $this;
     }
 
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getArticles() === $this) {
-                $commande->setArticles(null);
-            }
-        }
-
-        return $this;
-    }
+ 
 
    
 }

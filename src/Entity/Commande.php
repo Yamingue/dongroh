@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,24 +20,9 @@ class Commande
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $prix;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $confirme_at;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=CommandeArticle::class, inversedBy="commandes")
-     */
-    private $articles;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Panier::class, inversedBy="Commandes")
-     */
-    private $panier;
 
     /**
      * @ORM\Column(type="datetime")
@@ -57,21 +44,24 @@ class Commande
      */
     private $is_deliver;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_out;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CommandeArticle::class, mappedBy="commande")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPrix(): ?int
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(int $prix): self
-    {
-        $this->prix = $prix;
-
-        return $this;
     }
 
     public function getConfirmeAt(): ?\DateTimeInterface
@@ -86,29 +76,6 @@ class Commande
         return $this;
     }
 
-    public function getArticles(): ?CommandeArticle
-    {
-        return $this->articles;
-    }
-
-    public function setArticles(?CommandeArticle $articles): self
-    {
-        $this->articles = $articles;
-
-        return $this;
-    }
-
-    public function getPanier(): ?Panier
-    {
-        return $this->panier;
-    }
-
-    public function setPanier(?Panier $panier): self
-    {
-        $this->panier = $panier;
-
-        return $this;
-    }
 
     public function getDoAt(): ?\DateTimeInterface
     {
@@ -156,5 +123,56 @@ class Commande
         $this->is_deliver = $is_deliver;
 
         return $this;
+    }
+
+    public function getIsOut(): ?bool
+    {
+        return $this->is_out;
+    }
+
+    public function setIsOut(?bool $is_out): self
+    {
+        $this->is_out = $is_out;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommandeArticle[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(CommandeArticle $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(CommandeArticle $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getCommande() === $this) {
+                $article->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTotal()
+    {
+        $total = 0;
+        foreach ($this->getArticles() as $prod) {
+            $total = $total + ($prod->getQte() * $prod->getArticle()->getPrix());
+        }
+        return $total;
     }
 }
