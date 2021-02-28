@@ -29,7 +29,7 @@ class FromationController extends AbstractController
     {
 
         $pagination = $this->paginator->paginate(
-            $fRepo->findAllPaginate(), /* query NOT result */
+            $fRepo->findNotExpire(), /* query NOT result */
             $req->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );

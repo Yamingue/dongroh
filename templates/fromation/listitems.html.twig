@@ -8,11 +8,8 @@
           <a href="{{ path('formation_view',{id:formation.id}) }}">{{ formation.titre }}</a>
         </h4>
         <p class="card-text">
-          {% if formation.description |length >70 %}
-          {{ formation.description |slice(0, 70)}} ...
-          {% else %}
-          {{ formation.description}}
-          {% endif %}
+          Date <span class="badge badge-secondary">{{ formation.beginAt |date("d/m/Y H:m")}}</span></h1>
+            <br>
           
         </p>
       </div>

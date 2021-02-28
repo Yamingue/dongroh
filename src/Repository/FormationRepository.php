@@ -54,4 +54,13 @@ class FormationRepository extends ServiceEntityRepository
             ->getQuery()
         ;
     }
+    public function findNotExpire()
+    {
+        return $this->createQueryBuilder('f')
+            ->where('f.begin_at >= :val')
+            ->orderBy('f.begin_at', 'DESC')
+            ->setParameter('val',new \DateTime())
+            ->getQuery()
+        ;
+    }
 }
