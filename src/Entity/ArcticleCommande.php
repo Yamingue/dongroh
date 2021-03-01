@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArcticleCommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,10 +25,16 @@ class ArcticleCommande
     private $qte;
 
     /**
-     * @ORM\OneToOne(targetEntity=Article::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="arcticleCommandes")
      */
     private $article;
+
+    public function __construct()
+    {
+        $this->article = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -45,15 +53,29 @@ class ArcticleCommande
         return $this;
     }
 
-    public function getArticle(): ?Article
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticle(): Collection
     {
         return $this->article;
     }
 
-    public function setArticle(Article $article): self
+    public function addArticle(Article $article): self
     {
-        $this->article = $article;
+        if (!$this->article->contains($article)) {
+            $this->article[] = $article;
+        }
 
         return $this;
     }
+
+    public function removeArticle(Article $article): self
+    {
+        $this->article->removeElement($article);
+
+        return $this;
+    }
+
+
 }

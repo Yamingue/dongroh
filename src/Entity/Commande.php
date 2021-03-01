@@ -50,7 +50,7 @@ class Commande
     private $is_out;
 
     /**
-     * @ORM\OneToMany(targetEntity=CommandeArticle::class, mappedBy="commande")
+     * @ORM\ManyToMany(targetEntity=CommandeArticle::class, inversedBy="commandes")
      */
     private $articles;
 
@@ -137,6 +137,25 @@ class Commande
         return $this;
     }
 
+ 
+    public function getTotal()
+    {
+         $total = 0;
+        foreach ($this->getArticles() as $prod) {
+            $total = $total + ($prod->getQte() * ($prod->getArticles())[0]->getPrix());
+        }
+        return $total;
+    }
+
+    public function hasArticle(Article $ar){
+        foreach ($this->getArticles() as $pro) {
+            if ($pro->hasArticle($ar)) {
+                return true;
+            }
+        }
+       return false;
+    }
+
     /**
      * @return Collection|CommandeArticle[]
      */
@@ -149,7 +168,6 @@ class Commande
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->setCommande($this);
         }
 
         return $this;
@@ -157,36 +175,8 @@ class Commande
 
     public function removeArticle(CommandeArticle $article): self
     {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getCommande() === $this) {
-                $article->setCommande(null);
-            }
-        }
+        $this->articles->removeElement($article);
 
         return $this;
-    }
-
-    public function getTotal()
-    {
-        $total = 0;
-        foreach ($this->getArticles() as $prod) {
-            $total = $total + ($prod->getQte() * $prod->getArticle()->getPrix());
-        }
-        return $total;
-    }
-
-    public function hasArticle(Article $ar){
-        /**
-         * @var $prod CommandeArticle
-         */
-        foreach ($this->getArticles() as $prod) {
-            dump($prod);
-            if (($prod->getArticle())->getId() == $ar->getId()) {
-            return true;
-            }
-           
-        }
-        return false;
     }
 }

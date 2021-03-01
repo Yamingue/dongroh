@@ -2,16 +2,19 @@
 
 namespace App\Controller;
 
+use DateTime;
+use App\Entity\User;
 use App\Entity\Article;
+use App\Entity\CheckOut;
 use App\Entity\Commande;
+use App\Form\CheckOutType;
 use App\Entity\CommandeArticle;
 use App\Form\CommandeArticleType;
 use App\Repository\CommandeRepository;
-use DateTime;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/profile")
@@ -23,6 +26,9 @@ class ProfileController extends AbstractController
      */
     public function index(CommandeRepository $cr): Response
     {
+        //dd($cr->findNotOut($this->getUser()));
+        // $cmd = $cr->findNotOut($this->getUser());
+        // dd($cmd->getArticles()[0]);
         return $this->render('profile/index.html.twig', [
 
             'notif' => '',
@@ -40,12 +46,15 @@ class ProfileController extends AbstractController
          */
         $commande = $cr->findNotOut($this->getUser());
         //dd($commande);
+        /**
+         * creations d'une commande
+         */
         if (!$commande) {
             $commande = new Commande();
             $commande->setIsOut(false);
             $commande->setDoAt( new \DateTime());
             $commande->setMakeBy($this->getUser());
-            dd($commande);
+            //dd($commande);
             $em->persist($commande);
             $em->flush();
         }
@@ -55,7 +64,7 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('profile');
         }
         $cmdArt= new CommandeArticle();
-        $cmdArt->setArticle($article);
+        $cmdArt->addArticle($article);
         $cmdArt->setQte(1);
         $commande->addArticle($cmdArt);
         $form = $this->createForm(CommandeArticleType::class,$cmdArt);
@@ -90,6 +99,43 @@ class ProfileController extends AbstractController
             //dd(count($cm->getArticles()));
         }
         return $this->redirectToRoute('profile');
+    }
+
+    /**
+     * @Route("/check-out", name="profile_check_out")
+     */
+    public function check_out(Request $req,CommandeRepository $cr)
+    {
+        /**
+         * @var User
+         */
+        $user= $this->getUser();
+        $commande =$cr->findNotOut($this->getUser());
+        if (!$commande) {
+            $this->addFlash('error',"Votre panier est vide");
+            return $this->redirectToRoute('profile');
+        }
+        $out = new CheckOut();
+        $out->setEmail($user->getEmail());
+        $out->setTelephone($user->getNumero());
+        $out->setNom($user->getUsername());
+        $out->setCommande($commande);
+        $form = $this->createForm(CheckOutType::class,$out);
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $commande->setIsOut(true);
+            $em= $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            $em->persist($commande);
+            $em->flush();
+            $this->addFlash('success',"Commande effectuer");
+            return $this->redirectToRoute('profile');
+        }
+        //dd($out);
+        return $this->render('profile/out.html.twig',[
+            'form'=>$form->createView(),
+
+        ]);
     }
 
 }

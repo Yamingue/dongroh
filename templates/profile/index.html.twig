@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{app.user.username}}{% endblock %}
-{% set articles = commande.articles %}
+
 {% block body %}
+{% if commande %}
+{% set articles = commande.articles %}
 <div class="container">
 
     <!--Section: Block Content-->
@@ -84,7 +86,7 @@
                 </li>
               </ul>
 
-              <button type="button" class="btn btn-primary btn-block waves-effect waves-light rounded">Finaliser l'achat</button>
+              <a href="{{ path('profile_check_out') }}" class="btn btn-primary btn-block waves-effect waves-light rounded">Finaliser l'achat</a>
 
             </div>
           </div>
@@ -100,4 +102,16 @@
     <!--Section: Block Content-->
 
   </div>
+    
+{% endif %}
+<div class="row center mt-5 mb-5">
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="card-body">
+        Votre panier est vide
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
+

@@ -48,7 +48,7 @@ class CommandeRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function findNotOut(User $u):Commande
+    public function findNotOut(User $u):?Commande
     {
         return $this->createQueryBuilder('c')
             //->innerJoin('c.make_by','u')

@@ -19,41 +19,33 @@ class CommandeArticle
      */
     private $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Article::class, cascade={"persist", "remove"})
-     */
-    private $article;
 
     /**
      * @ORM\Column(type="integer")
      */
     private $qte;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="articles")
+     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="commandeArticles")
      */
-    private $commande;
+    private $articles;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Commande::class, mappedBy="articles")
+     */
+    private $commandes;
+
 
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getArticle(): ?Article
-    {
-        return $this->article;
-    }
-
-    public function setArticle(?Article $article): self
-    {
-        $this->article = $article;
-
-        return $this;
     }
 
     public function getQte(): ?int
@@ -68,19 +60,60 @@ class CommandeArticle
         return $this;
     }
 
-    public function getCommande(): ?Commande
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
     {
-        return $this->commande;
+        return $this->articles;
     }
 
-    public function setCommande(?Commande $commande): self
+    public function addArticle(Article $article): self
     {
-        $this->commande = $commande;
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+        }
 
         return $this;
     }
 
- 
+    public function removeArticle(Article $article): self
+    {
+        $this->articles->removeElement($article);
 
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeArticle($this);
+        }
+
+        return $this;
+    }
+ 
+    public function hasArticle(Article $article)
+    {
+        return $this->articles->contains($article);
+    }
    
 }

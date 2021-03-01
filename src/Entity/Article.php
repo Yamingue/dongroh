@@ -49,11 +49,17 @@ class Article
      */
     private $notes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=CommandeArticle::class, mappedBy="articles")
+     */
+    private $commandeArticles;
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->notes = new ArrayCollection();
+        $this->arcticleCommandes = new ArrayCollection();
+        $this->commandeArticles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,6 +182,33 @@ class Article
        }
        
        return $n/count($this->getNotes());
+    }
+
+    /**
+     * @return Collection|CommandeArticle[]
+     */
+    public function getCommandeArticles(): Collection
+    {
+        return $this->commandeArticles;
+    }
+
+    public function addCommandeArticle(CommandeArticle $commandeArticle): self
+    {
+        if (!$this->commandeArticles->contains($commandeArticle)) {
+            $this->commandeArticles[] = $commandeArticle;
+            $commandeArticle->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeArticle(CommandeArticle $commandeArticle): self
+    {
+        if ($this->commandeArticles->removeElement($commandeArticle)) {
+            $commandeArticle->removeArticle($this);
+        }
+
+        return $this;
     }
 
    
