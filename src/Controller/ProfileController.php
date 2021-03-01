@@ -49,6 +49,11 @@ class ProfileController extends AbstractController
             $em->persist($commande);
             $em->flush();
         }
+        //On verifie s'il existe un article de ce genre dans le panier courant
+        if ($commande->hasArticle($article)) {
+            $this->addFlash('success',"l'article existe");
+            return $this->redirectToRoute('profile');
+        }
         $cmdArt= new CommandeArticle();
         $cmdArt->setArticle($article);
         $cmdArt->setQte(1);

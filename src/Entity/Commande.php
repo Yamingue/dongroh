@@ -175,4 +175,18 @@ class Commande
         }
         return $total;
     }
+
+    public function hasArticle(Article $ar){
+        /**
+         * @var $prod CommandeArticle
+         */
+        foreach ($this->getArticles() as $prod) {
+            dump($prod);
+            if (($prod->getArticle())->getId() == $ar->getId()) {
+            return true;
+            }
+           
+        }
+        return false;
+    }
 }
