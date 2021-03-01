@@ -72,4 +72,24 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/remove-item-{id}", name="profile_remove_items")
+     */
+    public function remove_article(CommandeArticle $ca=null,CommandeRepository $cr)
+    {
+        $cm = $cr->findNotOut($this->getUser());
+        if ($ca) {
+           // dump(count($cm->getArticles()));
+            $cm->removeArticle($ca);
+            $em = $this->getDoctrine()->getManager();
+           // dump($ca);
+            $em->persist($cm);
+            $em->remove($ca);
+            $em->flush();
+
+            //dd(count($cm->getArticles()));
+        }
+        return $this->redirectToRoute('profile');
+    }
+
 }
