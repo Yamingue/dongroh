@@ -3,14 +3,17 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
-<div class="card mt-3">
-    <div class="card-body">
-        {% trans %} Bienvenue chez DONGROH. Ce formulaire de contact Vous est reserver pour toute preocupation qu'il
-        s'agis d'une remarque ou d'une demande de service customisé votre plaisir est la notre {% endtrans %}
-    </div>
-</div>
-<div class="card mt-3 mb-3">
-    <div class="card-body">
+<!-- Material form register -->
+<div class="card mt-2">
+
+    <h5 class="card-header indigo white-text py-4">
+        <strong> {% trans %} Bienvenue chez DONGROH. Ce formulaire de contact Vous est reserver pour toute preocupation qu'il
+            s'agis d'une remarque ou d'une demande de service customisé votre plaisir est la notre {% endtrans %}</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body ">
+        
         {{ form_start(form)}}
         {{ form_widget(form)}}
         <button type="submit" href="#" class="btn btn-primary btn-icon-split">
@@ -21,5 +24,8 @@
         </button>
         {{ form_end(form)}}
     </div>
+
 </div>
+<!-- Material form register -->
+
 {% endblock %}

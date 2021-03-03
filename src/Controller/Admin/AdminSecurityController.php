@@ -44,13 +44,13 @@ class AdminSecurityController extends AbstractController
      */
     public function register(UserPasswordEncoderInterface $encoder)
     {
-        // $admin = new Admin();
-        // $admin->setRoles(['ROLE_ADMIN']);
-        // $admin->setEmail('yamking01@gmail.com');
-        // $admin->setPassword($encoder->encodePassword($admin,"12345678"));
-        // $em = $this->getDoctrine()->getManager();
-        // $em->persist($admin);
-        // $em->flush();
+        $admin = new Admin();
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setEmail('yamking01@gmail.com');
+        $admin->setPassword($encoder->encodePassword($admin,"12345678"));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($admin);
+        $em->flush();
         dd('collo');
         # code...
     }

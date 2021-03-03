@@ -1,0 +1,51 @@
+<div class="row  mt-2 mb-1">
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-12 mb-2">
+
+        <!-- Section: Categories -->
+        <section class="section">
+            <ul class="list-group z-depth-1">
+                {% for categorie in categories %}
+                {% if loop.index < 8 %} <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{{ path('home_cat',{id:categorie.id}) }}" class="dark-grey-text font-small"><i class="fas fa-folder-open dark-grey-text mr-2"
+                            aria-hidden="true"></i>
+                        {{categorie.nom}}</a>
+
+                    <a href="#"></a><span class="badge badge-danger badge-pill">{{ categorie.articles |length }}</span>
+
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if categories |length > 7 %}
+                    <li class="btn-group list-group-item dropdown ">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-folder dark-grey-text mr-2"
+                            aria-hidden="true"></i> Plus d'elements
+                            
+                        </a>
+                        <a href="#"></a><span class="badge badge-danger badge-pill">{{ categories |length -7 }}</span>
+                        <div class="dropdown-menu">
+                            {% for c in categories %}
+                            {% if loop.index > 7 %}
+                            <a class="dropdown-item waves-effect waves-light" href="{{ path('home_cat',{id:c.id}) }}">{{c.nom}}</a>
+
+                            {% endif %}
+
+                            {% endfor %}
+                        </div>
+                    </li>
+                    {% endif %}
+            </ul>
+
+        </section>
+        <!-- Section: Categories -->
+
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-lg-8 col-md-12 pb-lg-2">
+        {% include "home/banier_caroussel.twig" %}
+    </div>
+    <!-- Grid column -->
+</div>

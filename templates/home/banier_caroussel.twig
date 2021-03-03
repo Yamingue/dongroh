@@ -1,0 +1,23 @@
+<div id="carouselExampleIndicators" class="carousel slide col-sm-12" data-ride="carousel">
+    <ol class="carousel-indicators">
+      {% for b in baniers %}
+      <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index - 1 }}" {% if loop.index == 1 %}class="active"{% endif %} ></li>
+      {% endfor %}
+      
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      {% for b in baniers %}
+      <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+        <img class="d-block img-fluid" src="{{ asset(b.path) }}" alt="dongroh banier">
+      </div>
+      {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>

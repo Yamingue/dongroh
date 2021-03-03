@@ -4,4 +4,38 @@
 
 {% block body %}
 {% include "service/listing.html.twig" %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      {{ form_start(form)}}
+      {{ form_widget(form)}}
+      <button type="submit" class="btn btn-outline-primary">Envoyer</button>
+      {{ form_end(form)}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-danger btn-rounded" data-dismiss="modal">fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block js %}
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('Demande ' + recipient)
+            modal.find('.modal-body #contact_sujet').val(recipient)
+          })
+    </script>
 {% endblock %}
