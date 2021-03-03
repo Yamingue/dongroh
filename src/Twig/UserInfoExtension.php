@@ -32,8 +32,9 @@ class UserInfoExtension extends AbstractExtension
         ];
     }
 
-    public function countPanier(User $user)
+    public function countPanier(?User $user=null)
     {
+        if($user==null) return 0;
         $commande = $this->commandeRepo->findNotOut($user);
         if (!$commande) {
             return 0;
