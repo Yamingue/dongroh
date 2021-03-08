@@ -20,7 +20,7 @@
         <div class="card-text">
             {{ formation.description }}
         </div>
-        <a href="#" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal">Participer</a>
+        <a href="#" class="btn btn-orange mt-2" data-toggle="modal" data-target="#exampleModal">Participer</a>
     </div>
 </div>
 <!-- Modal -->
@@ -28,7 +28,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Inscription a {{ formation.titre }}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -37,7 +37,7 @@
             <p>
                 {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    <button type="submit" class="btn btn-primary btn-icon-split">
+                    <button type="submit" class="btn btn-orange btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fa fa-paper-plane"></i>
                         </span>
@@ -47,7 +47,7 @@
             </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
