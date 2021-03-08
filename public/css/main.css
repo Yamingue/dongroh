@@ -55,3 +55,7 @@
     border-radius: 50%;
     background-color: #0289d14b;
 }
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
