@@ -20,12 +20,14 @@ class ArticleType extends AbstractType
             ->add('description')
             ->add('categories')
             ->add('photo',FileType::class,[
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
                 'label'=>false,
                'constraints'=>[
                    new Image([
                     'allowPortrait'=>false,
                     'allowLandscape'=>true,
-                    'minRatio'=>1.5,
                     'maxRatio'=>1.5,
                    ])
                ]

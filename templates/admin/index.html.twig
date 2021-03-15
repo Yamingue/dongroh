@@ -1,43 +1,45 @@
-{% extends 'blank.admin.html.twig' %}
+{% extends 'admin_theme/admin.html.twig' %}
 
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#exampleModal">
-    Ajouter un article
-  </button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Ajouter un Article
+</button>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          {{ form_start(form) }}
-          {{ form_widget(form) }}
-          <button type="submit" href="#" class="btn btn-primary btn-icon-split">
-            <span class="icon text-white-50">
-                <i class="fas fa-paper-plane"></i>
-            </span>
-            <span class="text">Enregistrer</span>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" href="#" class="btn btn-primary btn-icon-split">
+          <span class="icon text-white-50">
+            <i class="fas fa-paper-plane"></i>
+          </span>
+          <span class="text">Enregistrer</span>
         </button>
-          {{ form_end(form) }}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+        {{ form_end(form) }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
-<div class="row">
-    {% include "admincarditems.html.twig" %}  
+</div>
+
+<div class="row mt-2">
+  
+  {% include "admin_theme/partials/liste_article.html.twig" %}
 </div>
 <div class="navigation">
-    {{ knp_pagination_render(articles) }}
+  {{ knp_pagination_render(articles) }}
 </div>
 {% endblock %}

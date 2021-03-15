@@ -3,7 +3,6 @@ namespace App\Controller\Admin;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use App\Form\CatType;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Formation;

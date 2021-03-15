@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+
+<!-- Mirrored from www.ecommerce-admin.com/demo/page-0-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Mar 2021 12:06:13 GMT -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>{% block title %}Dongroh{% endblock %}</title>
+  <link href="/css/bootstrapf9e3.css?v=1.1" rel="stylesheet" type="text/css"/>
+  <link href="/css/bootstrapf9e3.css" rel="stylesheet" type="text/css"/>
+
+  <!-- custom style -->
+  <link href="/css/uif9e3.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/responsivef9e3.css" rel="stylesheet" />
+
+  <!-- iconfont -->
+  <link rel="stylesheet" href="/fonts/material-icon/css/round.css"/>
+
+</head>
+<body>
+
+<b class="screen-overlay"></b>
+
+<!-- aside -->
+{% include "admin_theme/partials/aside.html.twig" %}
+<!-- aide -->
+<main class="main-wrap">
+<!-- header -->
+{% include "admin_theme/partials/header.html.twig" %}
+<!-- headerend -->
+<section class="content-main">
+{% block body %}
+  
+{% endblock %}
+</section> <!-- content-main end// -->
+
+
+</main>
+
+
+<script>
+	if(localStorage.getItem("darkmode")){
+		var body_el = document.body;
+		body_el.className += 'dark';
+	}
+</script>
+
+<script src="/js/jquery-3.5.0.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<!-- ChartJS files-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<!-- Custom JS -->
+<script src="/js/scriptc619.js"></script>
+
+</body>
+
+<!-- Mirrored from www.ecommerce-admin.com/demo/page-0-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Mar 2021 12:06:13 GMT -->
+</html>
