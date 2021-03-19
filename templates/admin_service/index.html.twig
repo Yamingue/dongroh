@@ -1,4 +1,4 @@
-{% extends "blank.admin.html.twig" %}
+{% extends "admin_theme/admin.html.twig" %}
 
 {% block title %}Hello AdminServiceController!{% endblock %}
 
@@ -28,11 +28,13 @@
             </tbody>
         </table>
     </div>
-    <div class="col-sm-4 col-md-4">
-        {{ form_start(form)}}
-        {{ form_widget(form)}}
-        <button type="submit" class="btn btn-sm btn-primary">Ajouter</button>
-        {{ form_end(form)}}
+    <div class="col-sm-4 col-md-4 card">
+        <div class="card-body">
+            {{ form_start(form)}}
+            {{ form_widget(form)}}
+            <button type="submit" class="btn btn-sm btn-primary mt-2">Ajouter</button>
+            {{ form_end(form)}}
+        </div>
     </div>
 </div>
 
