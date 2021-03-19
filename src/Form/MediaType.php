@@ -15,7 +15,7 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('path', FileType::class,[
-                'attr'=>['class'=>'file-path'],
+                'attr'=>['class'=>'form-control'],
                 'label'=>false,
                 'constraints'=>[
                     new File([

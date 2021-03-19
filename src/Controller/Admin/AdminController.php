@@ -144,6 +144,7 @@ class AdminController extends AbstractController
      * @Route("/formation-{id}-view", name="admin_formation_view")
      */
     public function view_formation(Formation $formation=null){
+        
         return $this->render('admin/formationView.html.twig',[
             'formation'=>$formation,
             'messages' => $this->cr->findNotRead()
@@ -155,19 +156,19 @@ class AdminController extends AbstractController
      * @Route("/formation-{id}-pdf", name="admin_formation_extract")
      */
     public function extrct_formation(Formation $formation=null){
-        
+      
      // Configure Dompdf according to your needs
      $pdfOptions = new Options();
      $pdfOptions->set('defaultFont', 'Arial');
      
      // Instantiate Dompdf with our options
      $dompdf = new Dompdf($pdfOptions);
-     
+     //dd($formation);
      // Retrieve the HTML generated in our twig file
      $html = $this->renderView('admin/mypdf.html.twig', [
          'participants' => $formation->getInscriptions()
      ]);
-     
+     //dd($html);
      // Load HTML to Dompdf
      $dompdf->loadHtml($html);
      

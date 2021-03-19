@@ -123,10 +123,11 @@ class ProfileController extends AbstractController
         $form = $this->createForm(CheckOutType::class,$out);
         $form->handleRequest($req);
         if ($form->isSubmitted() && $form->isValid()) {
+            $out->setDoAt(new \DateTime());
             $commande->setIsOut(true);
             $em= $this->getDoctrine()->getManager();
             $em->persist($commande);
-            $em->persist($commande);
+            $em->persist($out);
             $em->flush();
             $this->addFlash('success',"Commande effectuer");
             return $this->redirectToRoute('profile');

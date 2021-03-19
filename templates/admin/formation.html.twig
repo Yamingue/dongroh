@@ -1,4 +1,4 @@
-{% extends "blank.admin.html.twig" %}
+{% extends 'admin_theme/admin.html.twig' %}
 {% block body %}
 <div class="grid-2">
     <div class="card mb-2">
@@ -44,7 +44,7 @@
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <p>
-                <button class="btn btn-primary" type="submit" name="action">Enregistrer
+                <button class="btn btn-primary mt-2" type="submit" name="action">Enregistrer
                     <i class="fa fa-paper-plane"></i>
                 </button>
             </p>

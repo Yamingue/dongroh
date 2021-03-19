@@ -1,0 +1,123 @@
+{% extends "admin_theme/admin.html.twig" %}
+{% block body %}
+<div class="card">
+  <header class="card-header">
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-md-6">
+        <span>
+          <i class="material-icons md-calendar_today"></i> <b>{{ commande.doAt | date}}</b>
+        </span> <br>
+        <small class="text-muted">Order ID: {{commande.id}}</small>
+      </div>
+      <div class="col-lg-6 col-md-6 ms-auto text-md-end">
+        <select class="form-select d-inline-block" style="max-width: 200px">
+          <option>Change status</option>
+          <option>Awaiting payment</option>
+          <option>Confirmed</option>
+          <option>Shipped</option>
+          <option>Delivered</option>
+        </select>
+        <a class="btn btn-light" href="#">Save</a>
+        <a class="btn btn-secondary ms-2" href="#"><i class="icon material-icons md-print"></i></a>
+      </div>
+    </div>
+  </header> <!-- card-header end// -->
+  <div class="card-body">
+
+    <div class="row mb-5 order-info-wrap">
+      <div class="col-md-4">
+        <article class="icontext align-items-start">
+          <span class="icon icon-sm rounded-circle bg-primary-light">
+            <i class="text-primary material-icons md-person"></i>
+          </span>
+          <div class="text">
+            <h6 class="mb-1">Client</h6>
+            <p class="mb-1">
+              {{commande.nom}} <br> {{commande.email}} <br> {{commande.telephone}}
+            </p>
+            <a href="#">View profile</a>
+          </div>
+        </article>
+      </div> <!-- col// -->
+      <div class="col-md-4">
+        <article class="icontext align-items-start">
+          <span class="icon icon-sm rounded-circle bg-primary-light">
+            <i class="text-primary material-icons md-local_shipping"></i>
+          </span>
+          <div class="text">
+            <h6 class="mb-1">Livraisons</h6>
+            <p class="mb-1">
+              Shipping: Fargo express <br> Pay method: pay as deliver <br> Status: new
+            </p>
+            <a href="#">Download info</a>
+          </div>
+        </article>
+      </div> <!-- col// -->
+      <div class="col-md-4">
+        <article class="icontext align-items-start">
+          <span class="icon icon-sm rounded-circle bg-primary-light">
+            <i class="text-primary material-icons md-place"></i>
+          </span>
+          <div class="text">
+            <h6 class="mb-1">Deliver to</h6>
+            <p class="mb-1">
+              Pays: {{commande.pays}} <br>Ville: {{commande.ville}} <br>
+            </p>
+            <a href="#">View profile</a>
+          </div>
+        </article>
+      </div> <!-- col// -->
+    </div> <!-- row // -->
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="table-responsive">
+          <table class="table border table-hover table-lg">
+            <thead>
+              <tr>
+                <th width="40%">Product</th>
+                <th width="20%">Unit Price</th>
+                <th width="20%">Quantity</th>
+                <th width="20%" class="text-end">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% set articles = commande.commande.articles %}
+              {% for c in  articles %}
+              {% set article = c.articles[0] %}
+              <tr>
+                <td>
+                  <a class="itemside" href="#">
+                    <div class="left">
+                    <img src="{{ '/' ~ article.photo }}" width="40" height="40" class="img-xs" alt="Item">
+                    </div>
+                    <div class="info"> {{ article.titre }} </div>
+                  </a>
+                </td>
+                <td> {{article.prix}} Fcfa </td>
+                <td> {{c.qte}} </td>
+                <td class="text-end">{{ article.prix * c.qte}} Fcfa </td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div> <!-- table-responsive// -->
+      </div> <!-- col// -->
+      <div class="col-lg-4">
+        <div class="box shadow-sm bg-light">
+          <h6>Payment info</h6>
+          {#
+          <p>
+            <img src="/images/card-brands/2.png" class="border" height="20"> Master Card **** **** 4768 <br>
+            Business name: Grand Market LLC <br>
+            Phone: +1 (800) 555-154-52
+          </p>
+          #}
+        </div>
+      </div> <!-- col// -->
+
+    </div>
+  </div> <!-- card-body end// -->
+</div>
+{% endblock %}
