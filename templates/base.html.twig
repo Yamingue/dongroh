@@ -12,6 +12,7 @@
 
   <link rel="stylesheet" href="{{ asset('font/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/main.css') }} ">
+  <link rel="stylesheet" href="/css/aos.css">
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
   <!-- Material Design Bootstrap -->
@@ -19,6 +20,7 @@
   <link rel="stylesheet" href="{{ asset('mdb/css/mdb.ecommerce.min.css') }}">
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="css/style.css">
+  <script src="/js/aos.js"></script>
   {% block meta %} {% endblock %}
   <!-- Custom styles for this template -->
   <link href="{{ asset('css/shop-homepage.css') }}" rel="stylesheet">
@@ -64,6 +66,9 @@
   {% block js %}
     
   {% endblock %}
+  <script>
+    AOS.init();
+  </script>
 
 </body>
 
