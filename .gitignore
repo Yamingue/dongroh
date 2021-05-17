@@ -3,7 +3,7 @@
 /public/banier
 /public/images
 /public/paye
-/public/build
+/public/build/
 ## vite
 node_modules
 .DS_Store
