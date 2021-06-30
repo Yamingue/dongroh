@@ -33,9 +33,10 @@
 {% include "admin_theme/partials/header.html.twig" %}
 <!-- headerend -->
 <section class="content-main">
-{% block body %}
+  <turbo-frame id="the_frame_id">
+    {% block body %}{% endblock %}
+</turbo-frame>
   
-{% endblock %}
 </section> <!-- content-main end// -->
 
 
